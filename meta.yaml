@@ -1,0 +1,25 @@
+{% set data = load_setup_py_data() %}
+
+package:
+  name: neuropy
+  version: {{ data["version"] }}
+
+source:
+  path: .
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - seaborn >=0.11.0
+    - statsmodels >=0.12.0
+    - scikit-learn >=0.23.0
+    - boto3 >=1.16.0
+    - requests >=2.24.0
+  run:
+    - python
+    - seaborn >=0.11.0
+    - statsmodels >=0.12.0
+    - scikit-learn >=0.23.0
+    - boto3 >=1.16.0
+    - requests >=2.24.0

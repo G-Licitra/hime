@@ -1,0 +1,18 @@
+name: romeo-dev
+channels:
+  - defaults
+  - conda-forge
+  - anaconda
+dependencies:
+  - boto3=1.17.12=pyhd3eb1b0_0
+  - jupyter=1.0.0=py38_7
+  - pytest=6.2.2
+  - pytest-cov=2.11.1=pyhd3eb1b0_0
+  - pytest-mock=3.5.1=pyhd3eb1b0_1
+  - pytest-mpl=0.12=pyhd3deb0d_0
+  - python=3.8.8
+  - requests=2.25.1=pyhd3eb1b0_0
+  - scikit-learn=0.23.2
+  - seaborn=0.11.1=pyhd3eb1b0_0
+  - statsmodels=0.12.2
+  - pre-commit>=2.11.0

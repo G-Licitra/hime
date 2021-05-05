@@ -1,0 +1,75 @@
+desktop.ini
+.mypy_cache/
+
+# PyCharm workspace
+.idea
+.iws
+workspace.xml
+tasks.xml
+venv
+
+# Ignore env files
+.env
+
+#Ignore R history files
+.Rhistory
+
+# vscode workspace
+.vscode
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Sphinx documentation
+docs/_build/
+
+# OSX
+.DS_Store
+
+# Data folders
+data/
+.mypy_cache/
+
+# config file
+.config
+.Rproj.user
+
+machine_learning/different_user_detection/one_vs_all/config.py
+# API key file
+machine_learning/.api_key
+.ipynb_checkpoints
+
+# env file
+.env
+*.png
+*.dot
+
+# allow images from baseline folder to uploaded to git to allow pytest to
+# work when testing output of plotting functions
+!/tests/frequentist_statistics/baseline/*.png
