@@ -1,2 +1,1 @@
-# rlmm
-Robust Linear Mixed Model
+# **RO**bust **M**ixed-**E**ffect m**O**del
