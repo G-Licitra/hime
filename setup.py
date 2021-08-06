@@ -21,17 +21,15 @@ def get_version(rel_path):
 
 
 install_requires = [
+    "pandas=1.3.1",
+    "casadi>=3.5.5",
     "seaborn>=0.11.0",
-    "statsmodels>=0.12.0",
-    "scikit-learn>=0.23.0",
-    "boto3>=1.16.0",
-    "requests>=2.24.0",
-    # "jupyter>=1.0.0", # stopped reading this in as the meta package is 6 years old now so doesn't support new things
+    "scikit-learn>=0.22.1",
 ]
 
 tests_require = [
-    "pytest>=6.2.0",
-    "pytest-cov>=2.11.0",
+    "pytest>=6.1.1",
+    "pytest-cov>=2.1.0",
     "pytest-mock>=3.5.0",
     "pytest-mpl>=0.12",
 ]
@@ -41,11 +39,13 @@ setup_requires: list = []
 packages = find_packages()
 
 setup(
-    name="romeo",
+    name="t.b.d.",
     version=get_version("romeo/__init__.py"),
-    description="Robust Mixed Effect Model",
-    url="https://github.com/GLicitra/robust-mixed-effect-model",
-    author="GLicitra",
+    description="lmm",
+    url="https://github.com/G-Licitra/robust-mixed-effect-model",
+    author="GLicitra, jameshtwose",
+    author_email="gianni.licitra7@gmail.com",
+    license="t.b.d.",
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
