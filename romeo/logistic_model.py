@@ -163,7 +163,7 @@ class LogisticRegression(ClassifierMixin, BaseEstimator):
         tmp_x = self.intercept_ * X
         # to avoid errors currently using the absolute of the covariance matrix for the bse calculation
         # TODO: look up better method
-        cov_mat = abs(np.linalg.inv(np.matmul(tmp_x.transpose(1, 0), tmp_x)))
+        cov_mat = np.linalg.inv(np.matmul(tmp_x.transpose(1, 0), tmp_x))
         self.bse = np.sqrt(np.diag(cov_mat))
         self.tvalues = sol["x"].full().ravel() / self.bse
         self.df_resid = X.shape[0] - X.shape[1]

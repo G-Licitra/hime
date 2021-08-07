@@ -9,6 +9,7 @@ from scipy import stats
 from .linear_model import LinearRegression
 from .logistic_model import LogisticRegression
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
+from .utils import sigmoid
 
 flatten = lambda l: [item for sublist in l for item in sublist]
 
@@ -231,11 +232,21 @@ class LogisticMixedRegression(LogisticRegression):
 
         model_lmm = ca.mtimes(X, theta_fixed) + ca.mtimes(self.Z, theta_random)
 
+        (N, ntheta) = X.shape
+
+        A = sigmoid(model_lmm)  # compute activation
+
+        # might be 1 / 2*N
+        cost = -1 / N * ca.sum1(y * ca.log(A) + (1 - y) * ca.log(1 - A))
+
         # create residual
-        e = y.reshape(-1, 1) - model_lmm
+        # e = y.reshape(-1, 1) - model_lmm
 
         # create optimization problem (x: optimization parameter, f: cost function)
-        nlp = {"x": ca.vertcat(theta_fixed, theta_random), "f": 0.5 * ca.dot(e, e), }
+        # nlp = {"x": ca.vertcat(theta_fixed, theta_random), "f": 0.5 * ca.dot(e, e), }
+
+        # create optimization problem (x: optimization parameter, f: cost function)
+        nlp = {"x": ca.vertcat(theta_fixed, theta_random), "f": cost, }
 
         # solve opt
         solver = ca.nlpsol("ols", "ipopt", nlp)
