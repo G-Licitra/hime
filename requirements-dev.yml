@@ -9,7 +9,6 @@ dependencies:
   - pandas=1.3.1=py38h5008ddb_0
   - scikit-learn=0.22.1=py38h3dc85bc_1
   - seaborn=0.11.1=pyhd3eb1b0_0
-  - statsmodels=0.12.2=py38ha1b04c9_0
   - pytest=6.1.1=py38_0
   - pytest-cov=2.12.1=pyhd8ed1ab_0
   - pytest-mock=3.6.1=pyhd8ed1ab_0
