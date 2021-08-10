@@ -11,7 +11,7 @@ optimizer = 'ipopt'
 # optimizer = 'qpoases'
 
 # set solver option:
-# detials in : https://www.coin-or.org/Ipopt/documentation/node40.html
+# details in : https://www.coin-or.org/Ipopt/documentation/node40.html
 
 # Solver options
 opts = {}
@@ -56,6 +56,7 @@ print("> primal solution =", sol['x'])
 print("> objective at solution =", sol['f'])
 print("> dual solution (x) =", sol['lam_x'])
 print("> dual solution (g) =", sol['lam_g'])
+print()
 
 # %% ===========================================================================
 # Solve Second Order Quadratic Cone Programming (SOCP)
@@ -88,6 +89,7 @@ print("> primal solution =", sol['x'])
 print("> objective at solution =", sol['f'])
 print("> dual solution (x) =", sol['lam_x'])
 print("> dual solution (g) =", sol['lam_g'])
+print()
 
 # %% ===========================================================================
 # Solve Mixed Integer Problem
@@ -123,6 +125,7 @@ print("> primal solution =", sol['x'])
 print("> objective at solution =", sol['f'])
 print("> dual solution (x) =", sol['lam_x'])
 print("> dual solution (g) =", sol['lam_g'])
+print()
 
 # %% ===========================================================================
 # Solve Non linear Mixer Integer Problem (NMIP)
@@ -157,6 +160,7 @@ print("> primal solution =", sol['x'])
 print("> objective at solution =", sol['f'])
 print("> dual solution (x) =", sol['lam_x'])
 print("> dual solution (g) =", sol['lam_g'])
+print()
 
 # %% ===========================================================================
 # title:     solving Knapsack problom
@@ -191,6 +195,7 @@ print("> objective at solution =", sol['f'])
 print("> dual solution (x) =", sol['lam_x'])
 print("> dual solution (g) =", sol['lam_g'])
 print(solver.stats())
+print()
 
 # %% ===========================================================================
 # Solve Non Linear Program (NLP)
@@ -220,7 +225,7 @@ print("> objective at solution = ", sol["f"])
 print("> primal solution = ", sol["x"])
 print("> dual solution (x) = ", sol["lam_x"])
 print("> dual solution (g) = ", sol["lam_g"])
-
+print()
 
 # %% ===========================================================================
 # Solve Parametric Optimization

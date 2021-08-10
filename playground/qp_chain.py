@@ -112,3 +112,4 @@ plt.title('hanging chain QP')
 plt.grid(True)
 plt.legend(['Chain','z - 0.1y >= 0.5'], loc=9)
 plt.show()
+
