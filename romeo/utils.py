@@ -61,3 +61,20 @@ def sigmoid(z):
     """
     s = 1 / (1 + ca.exp(-z))
     return s
+
+
+def logit(z):
+    # Note it might be necessary to replace the np.exp with casadi version
+    """
+    Compute the logit of z
+
+    Arguments:
+    z -- A scalar or numpy array of any size.
+
+    Return:
+    s -- sigmoid(z)
+    """
+    odds = ca.exp(z)
+    probabilities = odds / (odds + 1)
+    logit_values = ca.log(probabilities / (1 - probabilities))
+    return logit_values

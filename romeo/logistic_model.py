@@ -4,7 +4,7 @@ import pandas as pd
 import os
 import contextlib
 from scipy import stats
-from .utils import sigmoid
+from .utils import sigmoid, logit
 
 from sklearn.base import BaseEstimator, ClassifierMixin#, TransformerMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
@@ -127,7 +127,8 @@ class LogisticRegression(ClassifierMixin, BaseEstimator):
         # create residual
         # e = y - ca.mtimes(X, theta)
 
-        A = sigmoid(ca.mtimes(X, theta))  # compute activation
+        # A = sigmoid(ca.mtimes(X, theta))  # compute activation
+        A = logit(ca.mtimes(X, theta))  # compute activation
 
         # Note it might be necessary to replace the np.exp with casadi version (might be 1 / 2*N)
         cost = -1 / N * ca.sum1(y * ca.log(A) + (1 - y) * ca.log(1 - A))
@@ -163,21 +164,21 @@ class LogisticRegression(ClassifierMixin, BaseEstimator):
         tmp_x = self.intercept_ * X
         # to avoid errors currently using the absolute of the covariance matrix for the bse calculation
         # TODO: look up better method
-        cov_mat = np.linalg.inv(np.matmul(tmp_x.transpose(1, 0), tmp_x))
-        self.bse = np.sqrt(np.diag(cov_mat))
-        self.tvalues = sol["x"].full().ravel() / self.bse
-        self.df_resid = X.shape[0] - X.shape[1]
-        self.df_model = X.shape[1] - 1
-        self.pvalues = stats.t.sf(np.abs(self.tvalues), self.df_resid) * 2
-        # TODO: Make this summary table more applicable for LogisticRegression
-        self.summary_ = (pd.DataFrame(data={"coef": sol["x"].full().ravel(),
-                                            "std_err": self.bse,
-                                            "t": self.tvalues,
-                                            "P>|t|": self.pvalues},
-                                      index=summary_index)
-                         .join(pd.DataFrame(self.conf_int(), columns=["[0.025", "0.975]"],
-                                            index=summary_index))
-                         )
+        # cov_mat = np.linalg.inv(np.matmul(tmp_x.transpose(1, 0), tmp_x))
+        # self.bse = np.sqrt(np.diag(cov_mat))
+        # self.tvalues = sol["x"].full().ravel() / self.bse
+        # self.df_resid = X.shape[0] - X.shape[1]
+        # self.df_model = X.shape[1] - 1
+        # self.pvalues = stats.t.sf(np.abs(self.tvalues), self.df_resid) * 2
+        # # TODO: Make this summary table more applicable for LogisticRegression
+        # self.summary_ = (pd.DataFrame(data={"coef": sol["x"].full().ravel(),
+        #                                     "std_err": self.bse,
+        #                                     "t": self.tvalues,
+        #                                     "P>|t|": self.pvalues},
+        #                               index=summary_index)
+        #                  .join(pd.DataFrame(self.conf_int(), columns=["[0.025", "0.975]"],
+        #                                     index=summary_index))
+        #                  )
 
         # TODO: update these functions for the Logistic Regression output
         # self.resid = self.resid()
