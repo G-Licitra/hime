@@ -67,7 +67,7 @@ machine_learning/.api_key
 
 # env file
 .env
-*.png
+#*.png
 *.dot
 
 # allow images from baseline folder to uploaded to git to allow pytest to
