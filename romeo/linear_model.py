@@ -362,7 +362,21 @@ class LinearRegression(BaseEstimator):
 
 class LassoRegression(LinearRegression):
 
-    def fit(self, X, y, sample_weight=None, verbose=True, alpha=1):
+    def __init__(self, fit_intercept=True,
+                 normalize=False,
+                 copy_X=True,
+                 positive=False,
+                 alpha=1):
+        """Constructor. It runs every instance is created"""
+
+        self.fit_intercept = fit_intercept
+        self.normalize = normalize
+        self.copy_X = copy_X
+        self.positive = positive
+        self.is_fitted_ = False
+        self.alpha = alpha
+
+    def fit(self, X, y, sample_weight=None, verbose=True):
         """docstring"""
 
         # TODO: self._preprocess_data
@@ -403,7 +417,7 @@ class LassoRegression(LinearRegression):
         lbx = np.zeros(ntheta) if self.positive else -np.inf*np.ones(ntheta)
 
         # create optimization problem (x: optimization parameter, f: cost function)
-        nlp = {"x": theta, "f": 0.5*ca.dot(e, e) + 0.5*alpha*ca.sum1(ca.fabs(theta))}
+        nlp = {"x": theta, "f": 0.5*ca.dot(e, e) + 0.5*self.alpha*ca.sum1(ca.fabs(theta))}
 
         # solve opt
         solver = ca.nlpsol("ols", "ipopt", nlp)
