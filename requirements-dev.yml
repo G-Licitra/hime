@@ -1,4 +1,4 @@
-name: romeo-dev
+name: hime-dev
 channels:
   - defaults
   - conda-forge

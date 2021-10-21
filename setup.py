@@ -40,7 +40,7 @@ packages = find_packages()
 
 setup(
     name="t.b.d.",
-    version=get_version("romeo/__init__.py"),
+    version=get_version("hime/__init__.py"),
     description="lmm",
     url="https://github.com/G-Licitra/robust-mixed-effect-model",
     author="GLicitra, jameshtwose",

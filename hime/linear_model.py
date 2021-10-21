@@ -619,7 +619,7 @@ if __name__ == "__main__":
     sk_reg = sk.LinearRegression().fit(X, y)
     sk_y_pred = sk_reg.predict(X)
 
-    # fit & predict using romeo
+    # fit & predict using hime
     rm_reg = LinearRegression().fit(X, y)
     rm_y_pred = rm_reg.predict(X)
 
