@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Exploring the different linear regressions which use the hime.LinearRegression class as the BaseEstimator &#8212; hime 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Exploring the different Linear Mixed Model regressions which use the hime.LinearRegression class as the BaseEstimator" href="hime_ALL_types_LMM.html" />
+    <link rel="prev" title="hime.linear_model" href="usage.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><span><img src="_static/hime.png"></span>
+          hime</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html"><code class="docutils literal notranslate"><span class="pre">hime.linear_model</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#hime-logistic-model"><code class="docutils literal notranslate"><span class="pre">hime.logistic_model</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#hime-multi-level-model"><code class="docutils literal notranslate"><span class="pre">hime.multi_level_model</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#hime-utils"><code class="docutils literal notranslate"><span class="pre">hime.utils</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Notebooks</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Exploring the different linear regressions which use the <code class="docutils literal notranslate"><span class="pre">hime.LinearRegression</span></code> class as the <code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hime_ALL_types_LMM.html">Exploring the different Linear Mixed Model regressions which use the <code class="docutils literal notranslate"><span class="pre">hime.LinearRegression</span></code> class as the <code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hime_ALL_types_LogMM.html">Exploring the different Logistic Mixed Model regressions which use the <code class="docutils literal notranslate"><span class="pre">hime.LogisticRegression</span></code> class as the <code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hime_linear_regression.html">Exploring the functionality within the <code class="docutils literal notranslate"><span class="pre">hime.LinearRegression</span></code> class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hime_linear_regression.html#Statsmodels">Statsmodels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hime_logistic_regression.html">Exploring the functionality within the <code class="docutils literal notranslate"><span class="pre">hime.LogisticRegression</span></code> class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hime_logistic_regression.html#Statsmodels">Statsmodels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hime_w_sklearn.html">Using some of the sklearn functions in conjunction with <code class="docutils literal notranslate"><span class="pre">hime</span></code> estimators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests.html"><code class="docutils literal notranslate"><span class="pre">tests.test_LassoRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html#module-tests.test_LinearRegression"><code class="docutils literal notranslate"><span class="pre">tests.test_LinearRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html#module-tests.test_RidgeRegression"><code class="docutils literal notranslate"><span class="pre">tests.test_RidgeRegression</span></code></a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Exploring the different linear regressions which use the <code class="docutils literal notranslate"><span class="pre">hime.LinearRegression</span></code> class as the <code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a><ul>
+<li><a class="reference internal" href="#Make-X-and-y-data">Make X and y data</a></li>
+<li><a class="reference internal" href="#Fit-the-model">Fit the model</a></li>
+<li><a class="reference internal" href="#Fit-the-romeo-LinearRegression">Fit the romeo LinearRegression</a></li>
+<li><a class="reference internal" href="#Fit-the-romeo-LassoRegression">Fit the romeo LassoRegression</a></li>
+<li><a class="reference internal" href="#Fit-the-romeo-RidgeRegression">Fit the romeo RidgeRegression</a></li>
+<li><a class="reference internal" href="#Plot-the-original-data-and-the-lines-of-best-fit-for-each-of-the-predictors-on-the-target">Plot the original data and the lines of best fit for each of the predictors on the target</a></li>
+<li><a class="reference internal" href="#With-the-fitted-model-attempt-to-predict-the-test-data">With the fitted model attempt to predict the test data</a></li>
+<li><a class="reference internal" href="#Calculate-the-r2-between-the-predicted-vs-the-real-scores">Calculate the r2 between the predicted vs the real scores</a></li>
+<li><a class="reference internal" href="#Plot-the-predicted-vs-the-real-values">Plot the predicted vs the real values</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="Exploring-the-different-linear-regressions-which-use-the-hime.LinearRegression-class-as-the-BaseEstimator">
+<h1>Exploring the different linear regressions which use the <code class="docutils literal notranslate"><span class="pre">hime.LinearRegression</span></code> class as the <code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code><a class="headerlink" href="#Exploring-the-different-linear-regressions-which-use-the-hime.LinearRegression-class-as-the-BaseEstimator" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">import</span> <span class="nn">session_info</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">current_wd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">current_wd</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/notebook&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="kn">from</span> <span class="nn">hime.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">LassoRegression</span><span class="p">,</span> <span class="n">RidgeRegression</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">current_wd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session_info</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">write_req_file</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<details>
+<summary>Click to view session information</summary>
+<pre>
+-----
+hime                0.0.1
+matplotlib          3.3.4
+numpy               1.19.2
+pandas              1.2.3
+seaborn             0.11.1
+session_info        1.0.0
+sklearn             0.24.1
+-----
+</pre>
+<details>
+<summary>Click to view modules imported as dependencies</summary>
+<pre>
+PIL                 8.1.2
+appnope             0.1.2
+backcall            0.2.0
+casadi              3.5.5
+cffi                1.14.5
+colorama            0.3.9
+cycler              0.10.0
+cython_runtime      NA
+dateutil            2.8.1
+decorator           4.4.2
+ipykernel           5.3.4
+ipython_genutils    0.2.0
+ipywidgets          7.6.3
+jedi                0.17.2
+joblib              0.17.0
+kiwisolver          1.3.1
+mpl_toolkits        NA
+parso               0.7.0
+pexpect             4.8.0
+pickleshare         0.7.5
+pkg_resources       NA
+prompt_toolkit      3.0.8
+psutil              5.8.0
+ptyprocess          0.7.0
+pyexpat             NA
+pygments            2.8.1
+pyparsing           2.4.7
+pytz                2021.1
+repoze              NA
+scipy               1.5.3
+simplejson          3.17.5
+six                 1.15.0
+statsmodels         0.12.2
+storemagic          NA
+swig_runtime_data4  NA
+tornado             6.1
+traitlets           5.0.5
+wcwidth             0.2.5
+zc                  NA
+zmq                 20.0.0
+</pre>
+</details> <!-- seems like this ends pre, so might as well be explicit -->
+<pre>
+-----
+IPython             7.21.0
+jupyter_client      6.1.7
+jupyter_core        4.7.1
+jupyterlab          2.2.6
+notebook            6.2.0
+-----
+Python 3.9.2 (default, Mar  3 2021, 11:58:52) [Clang 10.0.0 ]
+macOS-10.16-x86_64-i386-64bit
+-----
+Session information updated at 2021-10-21 15:03
+</pre>
+</details></div>
+</div>
+<section id="Make-X-and-y-data">
+<h2>Make X and y data<a class="headerlink" href="#Make-X-and-y-data" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">amount_of_features</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">coef</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">n_features</span><span class="o">=</span><span class="n">amount_of_features</span><span class="p">,</span>
+    <span class="n">n_informative</span><span class="o">=</span><span class="n">amount_of_features</span><span class="p">,</span>
+                             <span class="n">noise</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                             <span class="n">coef</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coef</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([86.47223763,  5.63754967, 27.34070719, 41.48195023])
+</pre></div></div>
+</div>
+</section>
+<section id="Fit-the-model">
+<h2>Fit the model<a class="headerlink" href="#Fit-the-model" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;feat_</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+<span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]),</span>
+      <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+      <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feat_0</th>
+      <th>feat_1</th>
+      <th>feat_2</th>
+      <th>feat_3</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.852433</td>
+      <td>-0.661786</td>
+      <td>0.186454</td>
+      <td>-2.025143</td>
+      <td>-8.751790</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.493001</td>
+      <td>-0.208122</td>
+      <td>-0.622700</td>
+      <td>0.280992</td>
+      <td>-40.948309</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1.142970</td>
+      <td>0.058209</td>
+      <td>0.153725</td>
+      <td>-0.883857</td>
+      <td>-126.192510</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.375698</td>
+      <td>-1.150994</td>
+      <td>0.110923</td>
+      <td>-0.544383</td>
+      <td>7.050788</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.196207</td>
+      <td>-1.106335</td>
+      <td>-0.185659</td>
+      <td>-0.479174</td>
+      <td>-134.050438</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">69420</span><span class="p">)</span>
+<span class="n">df_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">df_test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+((80, 5), (20, 5))
+</pre></div></div>
+</div>
+</section>
+<section id="Fit-the-romeo-LinearRegression">
+<h2>Fit the romeo LinearRegression<a class="headerlink" href="#Fit-the-romeo-LinearRegression" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">df_train</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&quot;feat&quot;</span><span class="p">),</span>
+                                               <span class="n">y</span><span class="o">=</span><span class="n">df_train</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">],</span>
+                                               <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="o">.</span><span class="n">summary_</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>coef</th>
+      <th>std_err</th>
+      <th>t</th>
+      <th>P&gt;|t|</th>
+      <th>[0.025</th>
+      <th>0.975]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>intercept</th>
+      <td>-0.171726</td>
+      <td>0.651993</td>
+      <td>-0.263386</td>
+      <td>7.929751e-01</td>
+      <td>-1.470563</td>
+      <td>1.127110</td>
+    </tr>
+    <tr>
+      <th>feat_0</th>
+      <td>87.155885</td>
+      <td>0.701928</td>
+      <td>124.166366</td>
+      <td>1.410762e-88</td>
+      <td>85.757572</td>
+      <td>88.554198</td>
+    </tr>
+    <tr>
+      <th>feat_1</th>
+      <td>5.751563</td>
+      <td>0.655423</td>
+      <td>8.775339</td>
+      <td>3.983391e-13</td>
+      <td>4.445893</td>
+      <td>7.057234</td>
+    </tr>
+    <tr>
+      <th>feat_2</th>
+      <td>26.934038</td>
+      <td>0.660686</td>
+      <td>40.766763</td>
+      <td>6.241126e-53</td>
+      <td>25.617884</td>
+      <td>28.250193</td>
+    </tr>
+    <tr>
+      <th>feat_3</th>
+      <td>40.459461</td>
+      <td>0.767188</td>
+      <td>52.737353</td>
+      <td>4.910777e-61</td>
+      <td>38.931144</td>
+      <td>41.987777</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Fit-the-romeo-LassoRegression">
+<h2>Fit the romeo LassoRegression<a class="headerlink" href="#Fit-the-romeo-LassoRegression" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span> <span class="o">=</span> <span class="n">LassoRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">df_train</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&quot;feat&quot;</span><span class="p">),</span>
+                                               <span class="n">y</span><span class="o">=</span><span class="n">df_train</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">],</span>
+                                               <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="o">.</span><span class="n">summary_</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>coef</th>
+      <th>std_err</th>
+      <th>t</th>
+      <th>P&gt;|t|</th>
+      <th>[0.025</th>
+      <th>0.975]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>intercept</th>
+      <td>-0.165649</td>
+      <td>0.675911</td>
+      <td>-0.245075</td>
+      <td>8.070673e-01</td>
+      <td>-1.512133</td>
+      <td>1.180835</td>
+    </tr>
+    <tr>
+      <th>feat_0</th>
+      <td>87.147864</td>
+      <td>0.727678</td>
+      <td>119.761519</td>
+      <td>2.089901e-87</td>
+      <td>85.698254</td>
+      <td>88.597474</td>
+    </tr>
+    <tr>
+      <th>feat_1</th>
+      <td>5.743241</td>
+      <td>0.679468</td>
+      <td>8.452562</td>
+      <td>1.640541e-12</td>
+      <td>4.389673</td>
+      <td>7.096810</td>
+    </tr>
+    <tr>
+      <th>feat_2</th>
+      <td>26.927887</td>
+      <td>0.684923</td>
+      <td>39.315186</td>
+      <td>8.396310e-52</td>
+      <td>25.563450</td>
+      <td>28.292325</td>
+    </tr>
+    <tr>
+      <th>feat_3</th>
+      <td>40.449371</td>
+      <td>0.795332</td>
+      <td>50.858473</td>
+      <td>6.934968e-60</td>
+      <td>38.864989</td>
+      <td>42.033754</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="o">.</span><span class="n">fit_evaluation_</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>r_squared</th>
+      <th>r_squared_adj</th>
+      <th>f_statistic</th>
+      <th>f_statistic_pvalue</th>
+      <th>log_likelihood</th>
+      <th>AIC</th>
+      <th>BIC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>model_evaluation</th>
+      <td>0.997</td>
+      <td>0.997</td>
+      <td>5759.773</td>
+      <td>0.0</td>
+      <td>-247.64</td>
+      <td>503.28</td>
+      <td>512.808</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Fit-the-romeo-RidgeRegression">
+<h2>Fit the romeo RidgeRegression<a class="headerlink" href="#Fit-the-romeo-RidgeRegression" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span> <span class="o">=</span> <span class="n">RidgeRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">df_train</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&quot;feat&quot;</span><span class="p">),</span>
+                                               <span class="n">y</span><span class="o">=</span><span class="n">df_train</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">],</span>
+                                               <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="o">.</span><span class="n">summary_</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>coef</th>
+      <th>std_err</th>
+      <th>t</th>
+      <th>P&gt;|t|</th>
+      <th>[0.025</th>
+      <th>0.975]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>intercept</th>
+      <td>-0.186703</td>
+      <td>0.599692</td>
+      <td>-0.311331</td>
+      <td>7.564130e-01</td>
+      <td>-1.381351</td>
+      <td>1.007946</td>
+    </tr>
+    <tr>
+      <th>feat_0</th>
+      <td>85.903044</td>
+      <td>0.645622</td>
+      <td>133.054681</td>
+      <td>8.082439e-91</td>
+      <td>84.616899</td>
+      <td>87.189189</td>
+    </tr>
+    <tr>
+      <th>feat_1</th>
+      <td>5.438884</td>
+      <td>0.602848</td>
+      <td>9.021987</td>
+      <td>1.352162e-13</td>
+      <td>4.237950</td>
+      <td>6.639819</td>
+    </tr>
+    <tr>
+      <th>feat_2</th>
+      <td>26.708260</td>
+      <td>0.607688</td>
+      <td>43.950589</td>
+      <td>2.773902e-55</td>
+      <td>25.497683</td>
+      <td>27.918837</td>
+    </tr>
+    <tr>
+      <th>feat_3</th>
+      <td>39.636512</td>
+      <td>0.705647</td>
+      <td>56.170465</td>
+      <td>4.864308e-63</td>
+      <td>38.230791</td>
+      <td>41.042233</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="o">.</span><span class="n">fit_evaluation_</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>r_squared</th>
+      <th>r_squared_adj</th>
+      <th>f_statistic</th>
+      <th>f_statistic_pvalue</th>
+      <th>log_likelihood</th>
+      <th>AIC</th>
+      <th>BIC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>model_evaluation</th>
+      <td>0.997</td>
+      <td>0.996</td>
+      <td>5408.375</td>
+      <td>0.0</td>
+      <td>-250.155</td>
+      <td>508.311</td>
+      <td>517.839</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intercept</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span>
+<span class="n">coefs</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Plot-the-original-data-and-the-lines-of-best-fit-for-each-of-the-predictors-on-the-target">
+<h2>Plot the original data and the lines of best fit for each of the predictors on the target<a class="headerlink" href="#Plot-the-original-data-and-the-lines-of-best-fit-for-each-of-the-predictors-on-the-target" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&quot;feat&quot;</span><span class="p">),</span>
+             <span class="n">df_train</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">],</span>
+             <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;original data&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&quot;feat&quot;</span><span class="p">),</span>
+             <span class="n">intercept</span> <span class="o">+</span> <span class="n">coefs</span><span class="o">*</span><span class="n">df_train</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&quot;feat&quot;</span><span class="p">),</span>
+             <span class="s1">&#39;r&#39;</span><span class="p">,</span>
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fitted line&#39;</span><span class="p">)</span>
+<span class="c1"># _ = plt.legend()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/hime_ALL_types_linear_regression_25_0.png" src="_images/hime_ALL_types_linear_regression_25_0.png" />
+</div>
+</div>
+</section>
+<section id="With-the-fitted-model-attempt-to-predict-the-test-data">
+<h2>With the fitted model attempt to predict the test data<a class="headerlink" href="#With-the-fitted-model-attempt-to-predict-the-test-data" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_test</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&quot;feat&quot;</span><span class="p">))</span>
+<span class="n">y_pred</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>y_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>28.745442</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>216.434209</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test</span> <span class="o">=</span> <span class="n">df_test</span><span class="p">[[</span><span class="s2">&quot;target&quot;</span><span class="p">]]</span>
+<span class="n">y_test</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>34.902372</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>219.457181</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Calculate-the-r2-between-the-predicted-vs-the-real-scores">
+<h2>Calculate the r2 between the predicted vs the real scores<a class="headerlink" href="#Calculate-the-r2-between-the-predicted-vs-the-real-scores" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_sq</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">],</span>
+        <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">r_sq</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.997902689598276
+</pre></div></div>
+</div>
+</section>
+<section id="Plot-the-predicted-vs-the-real-values">
+<h2>Plot the predicted vs the real values<a class="headerlink" href="#Plot-the-predicted-vs-the-real-values" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">],</span>
+             <span class="n">y_pred</span><span class="p">,</span>
+             <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+<span class="c1">#              label=&#39;original data&#39;</span>
+            <span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;R-squared = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">r_sq</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                 <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">140</span><span class="p">),)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/hime_ALL_types_linear_regression_32_0.png" src="_images/hime_ALL_types_linear_regression_32_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/hime_ALL_types_linear_regression.nblink.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2022, James Twose, Giovanni Licitra.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
