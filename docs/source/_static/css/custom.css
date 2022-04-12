@@ -1,0 +1,95 @@
+body {
+    --darkgrey: grey;
+    --white: #ffffff;
+    --tyrian-purple: #5f0f40ff;
+    --ruby-red: #9a031eff;
+    --dark-orange: #fb8b24ff;
+    --spanish-orange: #e36414ff;
+    --midnight-green-eagle-green: #0f4c5cff;
+}
+
+
+h1 {
+    color: var(--tyrian-purple);
+}
+
+h1 code {
+    color: var(--tyrian-purple);
+}
+
+h2 {
+    color: var(--tyrian-purple);
+}
+
+#navbar {
+    background-color: var(--spanish-orange);
+    padding: 5px;
+}
+
+li {
+    color: var(--dark-orange);
+}
+
+li.toctree-l1 a.reference.internal code {
+    color: var(--dark-orange);
+}
+
+li .reference.internal {
+    color: var(--dark-orange);
+}
+
+.nav.navbar-nav li a {
+    color: var(--tyrian-purple);
+}
+
+.nav.navbar-nav li a:hover {
+    color: var(--opera-mauve);
+}
+
+#dLabelGlobalToc {
+    color: var(--white);
+}
+
+#dLabelLocalToc {
+    color: var(--white);
+}
+
+.genindex-jumpbox a {
+    color: var(--dark-orange);
+}
+
+table td li a {
+    color: var(--dark-orange);
+}
+
+.footer a {
+    color: var(--dark-orange);
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    color: var(--dark-orange);
+    text-decoration: none;
+    background-color: var(--yellow);
+}
+
+code {
+    color: var(--dark-orange);
+}
+
+a {
+    color: var(--dark-orange);
+}
+
+a.headerlink:hover {
+    color: var(--tyrian-purple);
+}
+
+.navbar-default .navbar-brand {
+    color: var(--white);
+    /* background-color: transparent; */
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: var(--white);
+    background-color: transparent;
+    }
