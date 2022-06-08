@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Exploring the functionality within the hime.LogisticRegression class &#8212; hime 0.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -14,6 +14,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -80,8 +81,8 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tests.html"><code class="docutils literal notranslate"><span class="pre">tests.test_LassoRegression</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html#module-tests.test_LinearRegression"><code class="docutils literal notranslate"><span class="pre">tests.test_LinearRegression</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html#module-tests.test_RidgeRegression"><code class="docutils literal notranslate"><span class="pre">tests.test_RidgeRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html#tests-test-linearregression"><code class="docutils literal notranslate"><span class="pre">tests.test_LinearRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html#tests-test-ridgeregression"><code class="docutils literal notranslate"><span class="pre">tests.test_RidgeRegression</span></code></a></li>
 </ul>
 </ul>
 </li>
@@ -354,6 +355,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -362,10 +364,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -377,18 +383,21 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
 <section id="Exploring-the-functionality-within-the-hime.LogisticRegression-class">
-<h1>Exploring the functionality within the <code class="docutils literal notranslate"><span class="pre">hime.LogisticRegression</span></code> class<a class="headerlink" href="#Exploring-the-functionality-within-the-hime.LogisticRegression-class" title="Permalink to this headline">¶</a></h1>
+<h1>Exploring the functionality within the <code class="docutils literal notranslate"><span class="pre">hime.LogisticRegression</span></code> class<a class="headerlink" href="#Exploring-the-functionality-within-the-hime.LogisticRegression-class" title="Permalink to this heading">¶</a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -529,7 +538,7 @@ Session information updated at 2021-10-21 15:01
 </details></div>
 </div>
 <section id="Make-X-and-y-data">
-<h2>Make X and y data<a class="headerlink" href="#Make-X-and-y-data" title="Permalink to this headline">¶</a></h2>
+<h2>Make X and y data<a class="headerlink" href="#Make-X-and-y-data" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -555,7 +564,7 @@ Session information updated at 2021-10-21 15:01
 </div>
 </section>
 <section id="Fit-the-model">
-<h2>Fit the model<a class="headerlink" href="#Fit-the-model" title="Permalink to this headline">¶</a></h2>
+<h2>Fit the model<a class="headerlink" href="#Fit-the-model" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -714,7 +723,7 @@ Session information updated at 2021-10-21 15:01
 </div>
 </section>
 <section id="Fit-the-romeo-LogisticRegression">
-<h2>Fit the romeo LogisticRegression<a class="headerlink" href="#Fit-the-romeo-LogisticRegression" title="Permalink to this headline">¶</a></h2>
+<h2>Fit the romeo LogisticRegression<a class="headerlink" href="#Fit-the-romeo-LogisticRegression" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -785,7 +794,7 @@ CasADi - 2021-10-21 15:01:47 WARNING(&#34;ols:nlp_grad_f failed: NaN detected fo
 </div>
 </section>
 <section id="Show-the-available-methods-and-attributes-of-the-fitted-model">
-<h2>Show the available methods and attributes of the fitted model<a class="headerlink" href="#Show-the-available-methods-and-attributes-of-the-fitted-model" title="Permalink to this headline">¶</a></h2>
+<h2>Show the available methods and attributes of the fitted model<a class="headerlink" href="#Show-the-available-methods-and-attributes-of-the-fitted-model" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
@@ -1131,7 +1140,7 @@ NumExpr defaulting to 8 threads.
 </div>
 </section>
 <section id="Plot-the-original-data-and-the-lines-of-best-fit-for-each-of-the-predictors-on-the-target">
-<h2>Plot the original data and the lines of best fit for each of the predictors on the target<a class="headerlink" href="#Plot-the-original-data-and-the-lines-of-best-fit-for-each-of-the-predictors-on-the-target" title="Permalink to this headline">¶</a></h2>
+<h2>Plot the original data and the lines of best fit for each of the predictors on the target<a class="headerlink" href="#Plot-the-original-data-and-the-lines-of-best-fit-for-each-of-the-predictors-on-the-target" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
@@ -1158,7 +1167,7 @@ NumExpr defaulting to 8 threads.
 </div>
 </section>
 <section id="With-the-fitted-model-attempt-to-predict-the-test-data">
-<h2>With the fitted model attempt to predict the test data<a class="headerlink" href="#With-the-fitted-model-attempt-to-predict-the-test-data" title="Permalink to this headline">¶</a></h2>
+<h2>With the fitted model attempt to predict the test data<a class="headerlink" href="#With-the-fitted-model-attempt-to-predict-the-test-data" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
@@ -1257,7 +1266,7 @@ NumExpr defaulting to 8 threads.
 </div>
 </section>
 <section id="Calculate-the-Log-loss-between-the-predicted-vs-the-real-scores">
-<h2>Calculate the Log loss between the predicted vs the real scores<a class="headerlink" href="#Calculate-the-Log-loss-between-the-predicted-vs-the-real-scores" title="Permalink to this headline">¶</a></h2>
+<h2>Calculate the Log loss between the predicted vs the real scores<a class="headerlink" href="#Calculate-the-Log-loss-between-the-predicted-vs-the-real-scores" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
@@ -1279,7 +1288,7 @@ NumExpr defaulting to 8 threads.
 </div>
 </section>
 <section id="Plot-the-predicted-vs-the-real-values">
-<h2>Plot the predicted vs the real values<a class="headerlink" href="#Plot-the-predicted-vs-the-real-values" title="Permalink to this headline">¶</a></h2>
+<h2>Plot the predicted vs the real values<a class="headerlink" href="#Plot-the-predicted-vs-the-real-values" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
@@ -1378,7 +1387,7 @@ NumExpr defaulting to 8 threads.
 </section>
 </section>
 <section id="Statsmodels">
-<h1>Statsmodels<a class="headerlink" href="#Statsmodels" title="Permalink to this headline">¶</a></h1>
+<h1>Statsmodels<a class="headerlink" href="#Statsmodels" title="Permalink to this heading">¶</a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
@@ -1880,7 +1889,7 @@ array([&#39;__class__&#39;, &#39;__delattr__&#39;, &#39;__dict__&#39;, &#39;__di
 </div>
 </div>
 <section id="id1">
-<h2>Plot the predicted vs the real values<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Plot the predicted vs the real values<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
@@ -2417,7 +2426,7 @@ statsmodels.iolib.summary.Summary
     </p>
     <p>
         &copy; Copyright 2022, James Twose, Giovanni Licitra.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.1.<br/>
     </p>
   </div>
 </footer>

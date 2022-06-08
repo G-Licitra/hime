@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Exploring the different Logistic Mixed Model regressions which use the hime.LogisticRegression class as the BaseEstimator &#8212; hime 0.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -14,6 +14,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -80,8 +81,8 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tests.html"><code class="docutils literal notranslate"><span class="pre">tests.test_LassoRegression</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html#module-tests.test_LinearRegression"><code class="docutils literal notranslate"><span class="pre">tests.test_LinearRegression</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html#module-tests.test_RidgeRegression"><code class="docutils literal notranslate"><span class="pre">tests.test_RidgeRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html#tests-test-linearregression"><code class="docutils literal notranslate"><span class="pre">tests.test_LinearRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html#tests-test-ridgeregression"><code class="docutils literal notranslate"><span class="pre">tests.test_RidgeRegression</span></code></a></li>
 </ul>
 </ul>
 </li>
@@ -348,6 +349,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -356,10 +358,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -371,20 +377,23 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
 <section id="Exploring-the-different-Logistic-Mixed-Model-regressions-which-use-the-hime.LogisticRegression-class-as-the-BaseEstimator">
-<h1>Exploring the different Logistic Mixed Model regressions which use the <code class="docutils literal notranslate"><span class="pre">hime.LogisticRegression</span></code> class as the <code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code><a class="headerlink" href="#Exploring-the-different-Logistic-Mixed-Model-regressions-which-use-the-hime.LogisticRegression-class-as-the-BaseEstimator" title="Permalink to this headline">¶</a></h1>
+<h1>Exploring the different Logistic Mixed Model regressions which use the <code class="docutils literal notranslate"><span class="pre">hime.LogisticRegression</span></code> class as the <code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code><a class="headerlink" href="#Exploring-the-different-Logistic-Mixed-Model-regressions-which-use-the-hime.LogisticRegression-class-as-the-BaseEstimator" title="Permalink to this heading">¶</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -395,7 +404,9 @@ div.rendered_html tbody tr:hover {
 <span class="c1"># from sklearn.datasets import make_regression</span>
 <span class="c1"># from sklearn.metrics import r2_score</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">log_loss</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
 <span class="kn">import</span> <span class="nn">session_info</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
 </pre></div>
 </div>
 </div>
@@ -439,76 +450,101 @@ div.rendered_html tbody tr:hover {
 -----
 hime                0.0.1
 matplotlib          3.3.4
-numpy               1.19.2
-pandas              1.2.3
+numpy               1.20.3
+pandas              1.1.5
 seaborn             0.11.1
 session_info        1.0.0
-sklearn             0.24.1
+sklearn             0.23.2
 statsmodels         0.12.2
 -----
 </pre>
 <details>
 <summary>Click to view modules imported as dependencies</summary>
 <pre>
-PIL                 8.1.2
+PIL                 8.3.1
+anyio               NA
 appnope             0.1.2
+attr                21.2.0
+babel               2.9.1
 backcall            0.2.0
+beta_ufunc          NA
+binom_ufunc         NA
+brotli              NA
 casadi              3.5.5
-cffi                1.14.5
-colorama            0.3.9
+certifi             2020.06.20
+cffi                1.14.6
+chardet             4.0.0
+charset_normalizer  2.0.0
 cycler              0.10.0
 cython_runtime      NA
-dateutil            2.8.1
-decorator           4.4.2
-ipykernel           5.3.4
+dateutil            2.8.2
+decorator           5.0.9
+defusedxml          0.7.1
+idna                3.1
+ipykernel           6.0.3
 ipython_genutils    0.2.0
-ipywidgets          7.6.3
-jedi                0.17.2
-joblib              0.17.0
+jedi                0.18.0
+jinja2              3.0.1
+joblib              1.0.1
+json5               NA
+jsonschema          3.2.0
+jupyter_server      1.10.1
+jupyterlab_server   2.6.1
 kiwisolver          1.3.1
+markupsafe          2.0.1
+matplotlib_inline   NA
 mpl_toolkits        NA
-parso               0.7.0
+nbclassic           NA
+nbformat            5.1.3
+nbinom_ufunc        NA
+packaging           21.0
+parso               0.8.2
 patsy               0.5.1
 pexpect             4.8.0
 pickleshare         0.7.5
 pkg_resources       NA
-prompt_toolkit      3.0.8
-psutil              5.8.0
+prometheus_client   NA
+prompt_toolkit      3.0.19
 ptyprocess          0.7.0
-pyexpat             NA
-pygments            2.8.1
+pvectorc            NA
+pygments            2.9.0
 pyparsing           2.4.7
+pyrsistent          NA
 pytz                2021.1
-repoze              NA
-scipy               1.5.3
-simplejson          3.17.5
-six                 1.15.0
+requests            2.26.0
+scipy               1.7.0
+send2trash          NA
+six                 1.16.0
+sniffio             1.2.0
+socks               1.7.1
 storemagic          NA
 swig_runtime_data4  NA
+terminado           0.10.1
 tornado             6.1
 traitlets           5.0.5
+urllib3             1.26.6
 wcwidth             0.2.5
-zc                  NA
-zmq                 20.0.0
+websocket           0.57.0
+zmq                 22.1.0
 </pre>
 </details> <!-- seems like this ends pre, so might as well be explicit -->
 <pre>
 -----
-IPython             7.21.0
-jupyter_client      6.1.7
+IPython             7.25.0
+jupyter_client      6.1.12
 jupyter_core        4.7.1
-jupyterlab          2.2.6
-notebook            6.2.0
+jupyterlab          3.1.1
+notebook            6.4.0
 -----
-Python 3.9.2 (default, Mar  3 2021, 11:58:52) [Clang 10.0.0 ]
+Python 3.8.10 (default, May 19 2021, 11:01:55) [Clang 10.0.0 ]
 macOS-10.16-x86_64-i386-64bit
 -----
-Session information updated at 2021-10-21 14:59
+Session information updated at 2021-12-08 16:09
 </pre>
 </details></div>
 </div>
 <section id="Make-X-and-y-data">
-<h2>Make X and y data<a class="headerlink" href="#Make-X-and-y-data" title="Permalink to this headline">¶</a></h2>
+<h2>Make X and y data<a class="headerlink" href="#Make-X-and-y-data" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -517,13 +553,22 @@ Session information updated at 2021-10-21 14:59
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Weight_bin</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Weight&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Note: NumExpr detected 12 cores but &#34;NUMEXPR_MAX_THREADS&#34; not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -660,7 +705,7 @@ Session information updated at 2021-10-21 14:59
 </div>
 </section>
 <section id="Fit-the-romeo-LinearMixedRegression">
-<h2>Fit the romeo LinearMixedRegression<a class="headerlink" href="#Fit-the-romeo-LinearMixedRegression" title="Permalink to this headline">¶</a></h2>
+<h2>Fit the romeo LinearMixedRegression<a class="headerlink" href="#Fit-the-romeo-LinearMixedRegression" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
@@ -848,7 +893,7 @@ array([4601, 4602, 4603, 4605, 4641, 4643, 4645, 4756, 4757, 4759, 4760,
 </div>
 </section>
 <section id="Plot-the-target-vs-the-fitted-values">
-<h2>Plot the target vs the fitted values<a class="headerlink" href="#Plot-the-target-vs-the-fitted-values" title="Permalink to this headline">¶</a></h2>
+<h2>Plot the target vs the fitted values<a class="headerlink" href="#Plot-the-target-vs-the-fitted-values" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
@@ -893,10 +938,108 @@ Length: 861, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">fitted_values</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">mixed_dict</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="o">.</span><span class="n">fitted_values</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0     -221.813473
+1     -191.037647
+2     -160.261821
+3     -129.485994
+4      -98.710168
+          ...
+856    -36.893851
+857     -6.118025
+858     24.657801
+859     55.433627
+860     86.209454
+Length: 861, dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="c1"># Note it might be necessary to replace the np.exp with casadi version</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the sigmoid of z</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">    z -- A scalar or numpy array of any size.</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">    s -- sigmoid(z)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigmoid</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">fitted_values</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0      0.0
+1      0.0
+2      0.0
+3      0.0
+4      0.0
+      ...
+856    0.0
+857    0.0
+858    1.0
+859    1.0
+860    1.0
+Length: 861, dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">fitted_values</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">data</span><span class="p">[</span><span class="n">mixed_dict</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span>
+<span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Skinny&quot;</span><span class="p">,</span> <span class="s2">&quot;Fat&quot;</span><span class="p">]</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">c_mat</span><span class="p">,</span>
+                <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+<span class="c1">#                 cbar=cbar,</span>
+                <span class="n">xticklabels</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span>
+                <span class="n">yticklabels</span><span class="o">=</span><span class="n">categories</span>
+               <span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix&quot;</span><span class="p">)</span>
+<span class="c1"># _ = plt.xlabel(f&#39;Predicted value\n\nAccuracy={summary_df[&quot;Accuracy&quot;].values[0]}\nSensitivity={summary_df[&quot;Sensitivity&quot;].values[0]}\nSpecificity={summary_df[&quot;Specificity&quot;].values[0]}\nF1 Score={summary_df[&quot;F1&quot;].values[0]}&#39;)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predicted value&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;True value&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -904,35 +1047,263 @@ Length: 861, dtype: float64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
+<img alt="_images/hime_ALL_types_LogMM_28_0.png" src="_images/hime_ALL_types_LogMM_28_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="o">.</span><span class="n">fitted_values</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-21-2fe9c333f44c&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>c_mat <span class="ansi-blue-fg">=</span> confusion_matrix<span class="ansi-blue-fg">(</span>reg<span class="ansi-blue-fg">.</span>fitted_values<span class="ansi-blue-fg">,</span> data<span class="ansi-blue-fg">[</span>mixed_dict<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;target&#34;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/opt/miniconda3/envs/general/lib/python3.9/site-packages/sklearn/utils/validation.py</span> in <span class="ansi-cyan-fg">inner_f</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     61</span>             extra_args <span class="ansi-blue-fg">=</span> len<span class="ansi-blue-fg">(</span>args<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-</span> len<span class="ansi-blue-fg">(</span>all_args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     62</span>             <span class="ansi-green-fg">if</span> extra_args <span class="ansi-blue-fg">&lt;=</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 63</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     64</span>
-<span class="ansi-green-intense-fg ansi-bold">     65</span>             <span class="ansi-red-fg"># extra_args &gt; 0</span>
-
-<span class="ansi-green-fg">/opt/miniconda3/envs/general/lib/python3.9/site-packages/sklearn/metrics/_classification.py</span> in <span class="ansi-cyan-fg">confusion_matrix</span><span class="ansi-blue-fg">(y_true, y_pred, labels, sample_weight, normalize)</span>
-<span class="ansi-green-intense-fg ansi-bold">    294</span>
-<span class="ansi-green-intense-fg ansi-bold">    295</span>     &#34;&#34;&#34;
-<span class="ansi-green-fg">--&gt; 296</span><span class="ansi-red-fg">     </span>y_type<span class="ansi-blue-fg">,</span> y_true<span class="ansi-blue-fg">,</span> y_pred <span class="ansi-blue-fg">=</span> _check_targets<span class="ansi-blue-fg">(</span>y_true<span class="ansi-blue-fg">,</span> y_pred<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    297</span>     <span class="ansi-green-fg">if</span> y_type <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">in</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;binary&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;multiclass&#34;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    298</span>         <span class="ansi-green-fg">raise</span> ValueError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;%s is not supported&#34;</span> <span class="ansi-blue-fg">%</span> y_type<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/opt/miniconda3/envs/general/lib/python3.9/site-packages/sklearn/metrics/_classification.py</span> in <span class="ansi-cyan-fg">_check_targets</span><span class="ansi-blue-fg">(y_true, y_pred)</span>
-<span class="ansi-green-intense-fg ansi-bold">     90</span>
-<span class="ansi-green-intense-fg ansi-bold">     91</span>     <span class="ansi-green-fg">if</span> len<span class="ansi-blue-fg">(</span>y_type<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 92</span><span class="ansi-red-fg">         raise ValueError(&#34;Classification metrics can&#39;t handle a mix of {0} &#34;
-</span><span class="ansi-green-intense-fg ansi-bold">     93</span>                          &#34;and {1} targets&#34;.format(type_true, type_pred))
-<span class="ansi-green-intense-fg ansi-bold">     94</span>
-
-<span class="ansi-red-fg">ValueError</span>: Classification metrics can&#39;t handle a mix of continuous and binary targets
+0     -221.813473
+1     -191.037647
+2     -160.261821
+3     -129.485994
+4      -98.710168
+          ...
+856    -36.893851
+857     -6.118025
+858     24.657801
+859     55.433627
+860     86.209454
+Length: 861, dtype: float64
 </pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scipy</span>
+                   <span class="o">.</span><span class="n">special</span>
+                   <span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">MinMaxScaler</span><span class="p">()</span>
+                          <span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">reg</span>
+                                         <span class="o">.</span><span class="n">fitted_values</span>
+                                         <span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                         <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+                                         <span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+                                         <span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MinMaxScaler().fit_transform(reg.fitted_values.to_numpy().reshape(-1, 1))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1.5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>856</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>857</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>858</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>859</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>860</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>861 rows × 1 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">((</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">data</span><span class="p">[</span><span class="n">mixed_dict</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/hime_ALL_types_LogMM_35_0.png" src="_images/hime_ALL_types_LogMM_35_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">((</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">data</span><span class="p">[</span><span class="n">mixed_dict</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span>
+<span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Skinny&quot;</span><span class="p">,</span> <span class="s2">&quot;Fat&quot;</span><span class="p">]</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">c_mat</span><span class="p">,</span>
+                <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+<span class="c1">#                 cbar=cbar,</span>
+                <span class="n">xticklabels</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span>
+                <span class="n">yticklabels</span><span class="o">=</span><span class="n">categories</span>
+               <span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix&quot;</span><span class="p">)</span>
+<span class="c1"># _ = plt.xlabel(f&#39;Predicted value\n\nAccuracy={summary_df[&quot;Accuracy&quot;].values[0]}\nSensitivity={summary_df[&quot;Sensitivity&quot;].values[0]}\nSpecificity={summary_df[&quot;Specificity&quot;].values[0]}\nF1 Score={summary_df[&quot;F1&quot;].values[0]}&#39;)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predicted value&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;True value&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/hime_ALL_types_LogMM_37_0.png" src="_images/hime_ALL_types_LogMM_37_0.png" />
+</div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -944,7 +1315,7 @@ Length: 861, dtype: float64
 </div>
 </section>
 <section id="With-the-fitted-model-attempt-to-predict-the-test-data">
-<h2>With the fitted model attempt to predict the test data<a class="headerlink" href="#With-the-fitted-model-attempt-to-predict-the-test-data" title="Permalink to this headline">¶</a></h2>
+<h2>With the fitted model attempt to predict the test data<a class="headerlink" href="#With-the-fitted-model-attempt-to-predict-the-test-data" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -965,7 +1336,7 @@ Length: 861, dtype: float64
 </div>
 </section>
 <section id="Calculate-the-r2-between-the-predicted-vs-the-real-scores">
-<h2>Calculate the r2 between the predicted vs the real scores<a class="headerlink" href="#Calculate-the-r2-between-the-predicted-vs-the-real-scores" title="Permalink to this headline">¶</a></h2>
+<h2>Calculate the r2 between the predicted vs the real scores<a class="headerlink" href="#Calculate-the-r2-between-the-predicted-vs-the-real-scores" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -978,7 +1349,7 @@ Length: 861, dtype: float64
 </div>
 </section>
 <section id="Plot-the-predicted-vs-the-real-values">
-<h2>Plot the predicted vs the real values<a class="headerlink" href="#Plot-the-predicted-vs-the-real-values" title="Permalink to this headline">¶</a></h2>
+<h2>Plot the predicted vs the real values<a class="headerlink" href="#Plot-the-predicted-vs-the-real-values" title="Permalink to this heading">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1017,7 +1388,7 @@ Length: 861, dtype: float64
     </p>
     <p>
         &copy; Copyright 2022, James Twose, Giovanni Licitra.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.1.<br/>
     </p>
   </div>
 </footer>
